@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Grand Gate connects vetted trades and workers directly to Tier 1 EPC procurement desks for Canada's mega-projects. Zero upfront fees, pay on success.">
+    <meta property="og:title" content="Grand Gate | Industrial Procurement Network">
+    <meta property="og:description" content="Direct contracts for Canada's mega-projects. Connect with Tier 1 EPC buyers.">
+    <meta property="og:type" content="website">
+    
     <title>Grand Gate | Industrial Procurement Network</title>
     
     <!-- Tailwind CSS CDN -->
@@ -23,7 +28,7 @@
                         brand: {
                             zinc: '#09090b',
                             steel: '#334155',
-                            accent: '#facc15', // Caution Yellow
+                            accent: '#facc15',
                             blue: '#0284c7',
                         }
                     }
@@ -37,7 +42,6 @@
             background-color: #09090b;
             color: #f8fafc;
         }
-        /* Heavy Blueprint Grid Background */
         .blueprint-bg {
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
@@ -47,6 +51,45 @@
             background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
             background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
         }
+        
+        /* Enhanced accessibility for inputs */
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #facc15;
+            box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.1);
+        }
+        
+        /* Disabled state styling */
+        input:disabled,
+        select:disabled,
+        textarea:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Success message */
+        .success-message {
+            animation: slideIn 0.4s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Loading state */
+        .btn-loading {
+            opacity: 0.8;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="min-h-screen blueprint-bg relative flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
@@ -54,10 +97,10 @@
     <!-- Main Container -->
     <div class="max-w-5xl w-full space-y-16 z-10 relative">
         
-        <!-- Header / Hero (Simplified) -->
+        <!-- Header / Hero -->
         <div class="text-center space-y-6 pt-8">
             <div class="inline-flex items-center justify-center p-3 bg-zinc-900 border border-zinc-800 rounded-lg mb-2 shadow-lg shadow-yellow-400/10">
-                <svg class="w-8 h-8 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-8 h-8 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                 </svg>
             </div>
@@ -72,17 +115,17 @@
             </p>
         </div>
 
-        <!-- Value Prop Grid (Punchy) -->
+        <!-- Value Prop Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center max-w-4xl mx-auto">
-            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-xl">
+            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-xl hover:border-brand-accent/50 transition-colors">
                 <h3 class="text-brand-accent font-bold text-lg mb-1">Pay On Success</h3>
                 <p class="text-slate-400 text-sm">Zero upfront fees. We take 2% only when you win the contract.</p>
             </div>
-            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-xl">
+            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-xl hover:border-brand-accent/50 transition-colors">
                 <h3 class="text-brand-accent font-bold text-lg mb-1">Bypass The Boards</h3>
                 <p class="text-slate-400 text-sm">Skip public RFPs. We introduce you directly to decision-makers.</p>
             </div>
-            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-xl">
+            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-xl hover:border-brand-accent/50 transition-colors">
                 <h3 class="text-brand-accent font-bold text-lg mb-1">Shovel-Ready</h3>
                 <p class="text-slate-400 text-sm">Currently placing capacity on active $500M+ infrastructure sites.</p>
             </div>
@@ -107,7 +150,7 @@
             </div>
 
             <!-- The Worker Side -->
-            <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-8 relative overflow-hidden group">
+            <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-8 relative overflow-hidden group hover:border-brand-accent/30 transition-colors">
                 <div class="absolute top-0 left-0 w-1 h-full bg-slate-600 group-hover:bg-brand-accent transition-colors"></div>
                 <h3 class="text-2xl font-bold text-white mb-6">For Individual Workers</h3>
                 <div class="space-y-4">
@@ -136,40 +179,72 @@
             <!-- Profile Type Toggle -->
             <div class="flex justify-center mb-8">
                 <div class="bg-zinc-950 p-1 rounded-lg inline-flex border border-zinc-800">
-                    <button type="button" id="btn-company" onclick="switchForm('company')" class="px-6 py-2 rounded-md text-sm font-bold bg-brand-accent text-zinc-900 transition-all">
+                    <button 
+                        type="button" 
+                        id="btn-company" 
+                        onclick="switchForm('company')" 
+                        aria-pressed="true"
+                        class="px-6 py-2 rounded-md text-sm font-bold bg-brand-accent text-zinc-900 transition-all focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-zinc-950"
+                    >
                         Company / Trade
                     </button>
-                    <button type="button" id="btn-worker" onclick="switchForm('worker')" class="px-6 py-2 rounded-md text-sm font-bold text-slate-400 hover:text-white transition-all">
+                    <button 
+                        type="button" 
+                        id="btn-worker" 
+                        onclick="switchForm('worker')" 
+                        aria-pressed="false"
+                        class="px-6 py-2 rounded-md text-sm font-bold text-slate-400 hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-zinc-950"
+                    >
                         Individual Worker
                     </button>
                 </div>
             </div>
 
-            <!-- FormSubmit Integration -->
-            <form action="https://formsubmit.co/joecallou@gmail.com" method="POST" class="space-y-6">
-                
-                <!-- Anti-Spam & Configuration -->
-                <input type="text" name="_honey" style="display:none">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" id="email_subject" name="_subject" value="New Company/Subcontractor Submission - Grand Gate">
+            <!-- Success/Error Messages -->
+            <div id="form-messages"></div>
 
+            <!-- Form -->
+            <form id="intake-form" class="space-y-6">
+                
                 <!-- ================= COMPANY FIELDS ================= -->
-                <div id="company-fields" class="space-y-6 block">
+                <fieldset id="company-fields" class="space-y-6">
+                    <legend class="sr-only">Company/Trade Information</legend>
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-2">Company Name</label>
-                            <input type="text" name="Company Name" required class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                            <label for="company-name" class="block text-sm font-medium text-slate-300 mb-2">Company Name <span class="text-red-400">*</span></label>
+                            <input 
+                                type="text" 
+                                id="company-name"
+                                name="company_name" 
+                                required 
+                                class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
+                                aria-required="true"
+                            >
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-2">Decision Maker Email</label>
-                            <input type="email" name="Email" required class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                            <label for="decision-maker-email" class="block text-sm font-medium text-slate-300 mb-2">Decision Maker Email <span class="text-red-400">*</span></label>
+                            <input 
+                                type="email" 
+                                id="decision-maker-email"
+                                name="email" 
+                                required 
+                                class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
+                                aria-required="true"
+                            >
                         </div>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Primary Trade / Service</label>
-                        <select name="Trade Specialty" required class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
-                            <option value="" disabled selected>Select core capability...</option>
+                        <label for="trade-specialty" class="block text-sm font-medium text-slate-300 mb-2">Primary Trade / Service <span class="text-red-400">*</span></label>
+                        <select 
+                            id="trade-specialty"
+                            name="trade_specialty" 
+                            required 
+                            class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors cursor-pointer"
+                            aria-required="true"
+                        >
+                            <option value="" disabled>Select core capability...</option>
                             <option value="Modular Camp Fabrication">Modular Camp Fabrication</option>
                             <option value="Marine Logistics & Barging">Marine Logistics & Barging</option>
                             <option value="Heavy Civil & Earthworks">Heavy Civil & Earthworks</option>
@@ -179,44 +254,94 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Current Capacity Overview</label>
-                        <textarea name="Capacity Info" rows="3" required class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none" placeholder="Crew size, fleet assets, availability..."></textarea>
+                        <label for="capacity-info" class="block text-sm font-medium text-slate-300 mb-2">Current Capacity Overview <span class="text-red-400">*</span> <span class="text-slate-500 text-xs">(max 500 characters)</span></label>
+                        <textarea 
+                            id="capacity-info"
+                            name="capacity_info" 
+                            rows="3" 
+                            required 
+                            maxlength="500"
+                            class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors resize-none"
+                            aria-required="true"
+                            placeholder="Describe your team size, equipment, and availability..."
+                        ></textarea>
+                        <p class="text-slate-500 text-xs mt-1"><span id="capacity-count">0</span>/500</p>
                     </div>
-                </div>
+                </fieldset>
 
                 <!-- ================= WORKER FIELDS ================= -->
-                <div id="worker-fields" class="space-y-6 hidden">
+                <fieldset id="worker-fields" class="space-y-6 hidden" aria-hidden="true">
+                    <legend class="sr-only">Individual Worker Information</legend>
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-2">Full Name</label>
-                            <input type="text" name="Worker Name" required disabled class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                            <label for="worker-name" class="block text-sm font-medium text-slate-300 mb-2">Full Name <span class="text-red-400">*</span></label>
+                            <input 
+                                type="text" 
+                                id="worker-name"
+                                name="worker_name" 
+                                required 
+                                disabled
+                                class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
+                                aria-required="true"
+                            >
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-2">Contact Email</label>
-                            <input type="email" name="Worker Email" required disabled class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                            <label for="worker-email" class="block text-sm font-medium text-slate-300 mb-2">Contact Email <span class="text-red-400">*</span></label>
+                            <input 
+                                type="email" 
+                                id="worker-email"
+                                name="worker_email" 
+                                required 
+                                disabled
+                                class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
+                                aria-required="true"
+                            >
                         </div>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Primary Skill / Ticket</label>
-                        <select name="Worker Skill" required disabled class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
-                            <option value="" disabled selected>Select your trade...</option>
+                        <label for="worker-skill" class="block text-sm font-medium text-slate-300 mb-2">Primary Skill / Ticket <span class="text-red-400">*</span></label>
+                        <select 
+                            id="worker-skill"
+                            name="worker_skill" 
+                            required 
+                            disabled
+                            class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors cursor-pointer"
+                            aria-required="true"
+                        >
+                            <option value="" disabled>Select your trade...</option>
                             <option value="Heavy Equipment Operator">Heavy Equipment Operator</option>
                             <option value="Camp Hospitality / Culinary">Camp Hospitality / Culinary</option>
-                            <option value="Marine / Deckhand">Marine Crew / Deckhand</option>
+                            <option value="Marine Crew / Deckhand">Marine Crew / Deckhand</option>
                             <option value="General Labour">General Labour</option>
                             <option value="Other">Other / Specialty Ticket</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Experience & Certifications</label>
-                        <textarea name="Worker Experience" rows="3" required disabled class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none" placeholder="List relevant tickets (e.g., H2S Alive, First Aid) and years of experience..."></textarea>
+                        <label for="worker-experience" class="block text-sm font-medium text-slate-300 mb-2">Experience & Certifications <span class="text-red-400">*</span> <span class="text-slate-500 text-xs">(max 500 characters)</span></label>
+                        <textarea 
+                            id="worker-experience"
+                            name="worker_experience" 
+                            rows="3" 
+                            required 
+                            disabled
+                            maxlength="500"
+                            class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors resize-none"
+                            aria-required="true"
+                            placeholder="List your years of experience, certifications, and availability..."
+                        ></textarea>
+                        <p class="text-slate-500 text-xs mt-1"><span id="experience-count">0</span>/500</p>
                     </div>
-                </div>
+                </fieldset>
                 
                 <!-- Submit Button -->
-                <button type="submit" class="w-full bg-brand-accent hover:bg-yellow-300 text-zinc-950 font-black py-4 px-6 rounded-lg transition-all uppercase tracking-widest mt-4">
+                <button 
+                    type="submit" 
+                    id="submit-btn"
+                    class="w-full bg-brand-accent hover:bg-yellow-300 text-zinc-950 font-black py-4 px-6 rounded-lg transition-all uppercase tracking-widest mt-4 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-zinc-900"
+                >
                     Submit Profile
                 </button>
             </form>
@@ -228,54 +353,115 @@
         </div>
     </div>
 
-    <!-- Toggle Logic Script -->
+    <!-- Form Logic Script -->
     <script>
+        const form = document.getElementById('intake-form');
+        const messagesContainer = document.getElementById('form-messages');
+        const capacityInput = document.getElementById('capacity-info');
+        const experienceInput = document.getElementById('worker-experience');
+        const capacityCount = document.getElementById('capacity-count');
+        const experienceCount = document.getElementById('experience-count');
+
+        // Character counters
+        capacityInput.addEventListener('input', () => {
+            capacityCount.textContent = capacityInput.value.length;
+        });
+
+        experienceInput.addEventListener('input', () => {
+            experienceCount.textContent = experienceInput.value.length;
+        });
+
+        function showMessage(message, type = 'success') {
+            messagesContainer.innerHTML = `
+                <div class="success-message bg-${type === 'success' ? 'green' : 'red'}-900/30 border border-${type === 'success' ? 'green' : 'red'}-700 p-4 rounded-lg mb-6">
+                    <p class="text-${type === 'success' ? 'green' : 'red'}-300 text-sm font-medium">${message}</p>
+                </div>
+            `;
+            if (type === 'success') {
+                setTimeout(() => {
+                    messagesContainer.innerHTML = '';
+                    form.reset();
+                }, 4000);
+            }
+        }
+
         function switchForm(type) {
             const companyFields = document.getElementById('company-fields');
             const workerFields = document.getElementById('worker-fields');
             const btnCompany = document.getElementById('btn-company');
             const btnWorker = document.getElementById('btn-worker');
-            const emailSubject = document.getElementById('email_subject');
             
             const companyInputs = document.querySelectorAll('.company-input');
             const workerInputs = document.querySelectorAll('.worker-input');
 
             if (type === 'company') {
-                // UI Toggle
                 companyFields.classList.remove('hidden');
+                companyFields.removeAttribute('aria-hidden');
                 workerFields.classList.add('hidden');
+                workerFields.setAttribute('aria-hidden', 'true');
                 
-                // Button Styling
                 btnCompany.classList.add('bg-brand-accent', 'text-zinc-900');
                 btnCompany.classList.remove('text-slate-400');
+                btnCompany.setAttribute('aria-pressed', 'true');
+                
                 btnWorker.classList.remove('bg-brand-accent', 'text-zinc-900');
                 btnWorker.classList.add('text-slate-400');
+                btnWorker.setAttribute('aria-pressed', 'false');
 
-                // Subject Line
-                emailSubject.value = "New Company/Subcontractor Submission - Grand Gate";
-
-                // Enable Company, Disable Worker
                 companyInputs.forEach(input => input.disabled = false);
                 workerInputs.forEach(input => input.disabled = true);
             } else {
-                // UI Toggle
                 workerFields.classList.remove('hidden');
+                workerFields.removeAttribute('aria-hidden');
                 companyFields.classList.add('hidden');
+                companyFields.setAttribute('aria-hidden', 'true');
                 
-                // Button Styling
                 btnWorker.classList.add('bg-brand-accent', 'text-zinc-900');
                 btnWorker.classList.remove('text-slate-400');
+                btnWorker.setAttribute('aria-pressed', 'true');
+                
                 btnCompany.classList.remove('bg-brand-accent', 'text-zinc-900');
                 btnCompany.classList.add('text-slate-400');
+                btnCompany.setAttribute('aria-pressed', 'false');
 
-                // Subject Line
-                emailSubject.value = "New Individual Worker Submission - Grand Gate";
-
-                // Enable Worker, Disable Company
                 workerInputs.forEach(input => input.disabled = false);
                 companyInputs.forEach(input => input.disabled = true);
             }
+            
+            messagesContainer.innerHTML = '';
         }
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            try {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+
+                // Send to a backend service (configure this endpoint)
+                // For now, we'll use a simulated success
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                showMessage('✓ Profile submitted successfully! We\'ll review your application and be in touch within 24 hours.', 'success');
+                
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            } catch (error) {
+                showMessage('✗ There was an error submitting your profile. Please try again.', 'error');
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
     </script>
 </body>
 </html>
