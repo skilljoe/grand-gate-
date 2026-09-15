@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Gate | Industrial Procurement Network</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind Configuration for single-file deployment -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            zinc: '#09090b',
+                            steel: '#334155',
+                            accent: '#facc15', // Caution Yellow
+                            blue: '#0284c7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #09090b;
+            color: #f8fafc;
+        }
+        .bg-grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-grid-pattern relative flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+
+    <!-- Main Container -->
+    <div class="max-w-4xl w-full space-y-12 z-10 relative">
+        
+        <!-- Header / Hero -->
+        <div class="text-center space-y-4">
+            <div class="inline-flex items-center justify-center p-3 bg-zinc-900 border border-zinc-800 rounded-lg mb-4 shadow-lg shadow-yellow-400/10">
+                <svg class="w-8 h-8 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black tracking-tight uppercase text-white">
+                Grand <span class="text-brand-accent">Gate</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-medium">
+                Direct access to Tier 1 EPC procurement desks for Canada's shovel-ready mega-projects. 
+            </p>
+        </div>
+
+        <!-- Value Prop Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-xl backdrop-blur-sm">
+                <h3 class="text-brand-accent font-bold text-lg mb-2">Zero Retainers</h3>
+                <p class="text-slate-400 text-sm">We operate strictly on a standard 2% success fee upon contract award.</p>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-xl backdrop-blur-sm">
+                <h3 class="text-brand-accent font-bold text-lg mb-2">Exclusive Access</h3>
+                <p class="text-slate-400 text-sm">Bypass public bid boards. Go straight to the decision-makers.</p>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-xl backdrop-blur-sm">
+                <h3 class="text-brand-accent font-bold text-lg mb-2">Active Shortlists</h3>
+                <p class="text-slate-400 text-sm">Currently sourcing capacity for $500M+ heavy infrastructure packages.</p>
+            </div>
+        </div>
+
+        <!-- Intake Form Section -->
+        <div class="bg-zinc-900 border border-zinc-700 p-8 rounded-2xl shadow-2xl">
+            <div class="mb-8 border-b border-zinc-800 pb-6">
+                <h2 class="text-2xl font-bold text-white mb-2">Submit Capability Profile</h2>
+                <p class="text-slate-400 text-sm">Enter your firm's details to be matched with active Tier 1 RFPs.</p>
+            </div>
+
+            <!-- FormSubmit Integration targeting your email -->
+            <form action="https://formsubmit.co/joecallou@gmail.com" method="POST" class="space-y-6">
+                
+                <!-- Anti-Spam & Configuration Hidden Fields -->
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="New Grand Gate Vendor Submission">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Company Name -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Company Name</label>
+                        <input type="text" name="Company Name" required 
+                            class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:outline-none transition-colors" 
+                            placeholder="e.g., Apex Heavy Civil">
+                    </div>
+                    
+                    <!-- Contact Email -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Decision Maker Email</label>
+                        <input type="email" name="Email" required 
+                            class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:outline-none transition-colors" 
+                            placeholder="director@company.com">
+                    </div>
+                </div>
+                
+                <!-- Trade Specialty -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Primary Trade / Service</label>
+                    <select name="Trade Specialty" required 
+                        class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:outline-none transition-colors appearance-none">
+                        <option value="" disabled selected>Select your core capability...</option>
+                        <option value="Modular Camp Fabrication">Modular Camp Fabrication & Assembly</option>
+                        <option value="Marine Logistics & Barging">Marine Logistics & Barging</option>
+                        <option value="Heavy Civil & Earthworks">Heavy Civil & Earthworks</option>
+                        <option value="Transmission & Electrical">Transmission & Electrical</option>
+                        <option value="Other">Other / Specialty Service</option>
+                    </select>
+                </div>
+
+                <!-- Capacity Info -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Current Q4 Capacity Overview</label>
+                    <textarea name="Capacity Info" rows="4" required 
+                        class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:outline-none transition-colors" 
+                        placeholder="Briefly describe your crew size, fleet assets, or availability for upcoming packages..."></textarea>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" 
+                    class="w-full bg-brand-accent hover:bg-yellow-300 text-zinc-950 font-black py-4 px-6 rounded-lg transition-all duration-200 uppercase tracking-widest hover:shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                    Join The Shortlist
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center pb-8 text-zinc-600 text-sm">
+            <p>&copy; 2026 Grand Gate. Commercial in confidence.</p>
+        </div>
+    </div>
+</body>
+</html>
