@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- Custom Tailwind Configuration for single-file deployment -->
+    <!-- Custom Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
@@ -37,109 +37,187 @@
             background-color: #09090b;
             color: #f8fafc;
         }
-        .bg-grid-pattern {
+        /* Heavy Blueprint Grid Background */
+        .blueprint-bg {
             background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
         }
     </style>
 </head>
-<body class="min-h-screen bg-grid-pattern relative flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<body class="min-h-screen blueprint-bg relative flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
 
     <!-- Main Container -->
-    <div class="max-w-4xl w-full space-y-12 z-10 relative">
+    <div class="max-w-5xl w-full space-y-16 z-10 relative">
         
-        <!-- Header / Hero -->
-        <div class="text-center space-y-4">
-            <div class="inline-flex items-center justify-center p-3 bg-zinc-900 border border-zinc-800 rounded-lg mb-4 shadow-lg shadow-yellow-400/10">
+        <!-- Header / Hero (Simplified) -->
+        <div class="text-center space-y-6 pt-8">
+            <div class="inline-flex items-center justify-center p-3 bg-zinc-900 border border-zinc-800 rounded-lg mb-2 shadow-lg shadow-yellow-400/10">
                 <svg class="w-8 h-8 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                 </svg>
             </div>
-            <h1 class="text-4xl md:text-5xl font-black tracking-tight uppercase text-white">
+            <h1 class="text-5xl md:text-6xl font-black tracking-tight uppercase text-white">
                 Grand <span class="text-brand-accent">Gate</span>
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-medium">
-                Direct access to Tier 1 EPC procurement desks for Canada's shovel-ready mega-projects. 
+            <p class="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto font-medium">
+                Direct contracts for Canada's mega-projects.
+            </p>
+            <p class="text-lg text-slate-400 max-w-xl mx-auto">
+                We connect vetted trades and workers straight to Tier 1 EPC procurement desks. Stop chasing public bids. 
             </p>
         </div>
 
-        <!-- Value Prop Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-xl backdrop-blur-sm">
-                <h3 class="text-brand-accent font-bold text-lg mb-2">Zero Retainers</h3>
-                <p class="text-slate-400 text-sm">We operate strictly on a standard 2% success fee upon contract award.</p>
+        <!-- Value Prop Grid (Punchy) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center max-w-4xl mx-auto">
+            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-xl">
+                <h3 class="text-brand-accent font-bold text-lg mb-1">Pay On Success</h3>
+                <p class="text-slate-400 text-sm">Zero upfront fees. We take 2% only when you win the contract.</p>
             </div>
-            <div class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-xl backdrop-blur-sm">
-                <h3 class="text-brand-accent font-bold text-lg mb-2">Exclusive Access</h3>
-                <p class="text-slate-400 text-sm">Bypass public bid boards. Go straight to the decision-makers.</p>
+            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-xl">
+                <h3 class="text-brand-accent font-bold text-lg mb-1">Bypass The Boards</h3>
+                <p class="text-slate-400 text-sm">Skip public RFPs. We introduce you directly to decision-makers.</p>
             </div>
-            <div class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-xl backdrop-blur-sm">
-                <h3 class="text-brand-accent font-bold text-lg mb-2">Active Shortlists</h3>
-                <p class="text-slate-400 text-sm">Currently sourcing capacity for $500M+ heavy infrastructure packages.</p>
+            <div class="bg-zinc-900/80 border border-zinc-800 p-6 rounded-xl">
+                <h3 class="text-brand-accent font-bold text-lg mb-1">Shovel-Ready</h3>
+                <p class="text-slate-400 text-sm">Currently placing capacity on active $500M+ infrastructure sites.</p>
+            </div>
+        </div>
+
+        <!-- Problem & Solution Matrix -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- The Company Side -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-8 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-1 h-full bg-slate-600"></div>
+                <h3 class="text-2xl font-bold text-white mb-6">For Companies & Trades</h3>
+                <div class="space-y-4">
+                    <div>
+                        <span class="text-red-400 font-bold text-sm uppercase tracking-wider">The Problem</span>
+                        <p class="text-slate-400 text-sm mt-1">You are wasting hours on public bid boards like MERX, only to lose to the same Tier 1 giants every time.</p>
+                    </div>
+                    <div>
+                        <span class="text-brand-accent font-bold text-sm uppercase tracking-wider">Our Solution</span>
+                        <p class="text-slate-300 text-sm mt-1">We broker your capability statement directly to the desk of the Project Director. You get exclusive access to secondary packages.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Worker Side -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-8 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-1 h-full bg-slate-600 group-hover:bg-brand-accent transition-colors"></div>
+                <h3 class="text-2xl font-bold text-white mb-6">For Individual Workers</h3>
+                <div class="space-y-4">
+                    <div>
+                        <span class="text-red-400 font-bold text-sm uppercase tracking-wider">The Problem</span>
+                        <p class="text-slate-400 text-sm mt-1">Union halls are slow, and camp jobs are hidden behind closed corporate networks.</p>
+                    </div>
+                    <div>
+                        <span class="text-brand-accent font-bold text-sm uppercase tracking-wider">Our Solution</span>
+                        <p class="text-slate-300 text-sm mt-1">We place skilled operators, camp staff, and logistics crew directly into the hiring pipelines of remote mega-projects.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Intake Form Section -->
-        <div class="bg-zinc-900 border border-zinc-700 p-8 rounded-2xl shadow-2xl">
-            <div class="mb-8 border-b border-zinc-800 pb-6">
-                <h2 class="text-2xl font-bold text-white mb-2">Submit Capability Profile</h2>
-                <p class="text-slate-400 text-sm">Enter your firm's details to be matched with active Tier 1 RFPs.</p>
+        <div class="bg-zinc-900 border border-zinc-700 p-6 md:p-10 rounded-2xl shadow-2xl max-w-4xl mx-auto relative overflow-hidden">
+            <!-- Decorative Accent -->
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-zinc-800 via-brand-accent to-zinc-800"></div>
+            
+            <div class="mb-8 text-center">
+                <h2 class="text-3xl font-bold text-white mb-2">Join The Shortlist</h2>
+                <p class="text-slate-400 text-sm">Select your profile type to submit your availability.</p>
             </div>
 
-            <!-- FormSubmit Integration targeting your email -->
+            <!-- Profile Type Toggle -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-zinc-950 p-1 rounded-lg inline-flex border border-zinc-800">
+                    <button type="button" id="btn-company" onclick="switchForm('company')" class="px-6 py-2 rounded-md text-sm font-bold bg-brand-accent text-zinc-900 transition-all">
+                        Company / Trade
+                    </button>
+                    <button type="button" id="btn-worker" onclick="switchForm('worker')" class="px-6 py-2 rounded-md text-sm font-bold text-slate-400 hover:text-white transition-all">
+                        Individual Worker
+                    </button>
+                </div>
+            </div>
+
+            <!-- FormSubmit Integration -->
             <form action="https://formsubmit.co/joecallou@gmail.com" method="POST" class="space-y-6">
                 
-                <!-- Anti-Spam & Configuration Hidden Fields -->
+                <!-- Anti-Spam & Configuration -->
                 <input type="text" name="_honey" style="display:none">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="New Grand Gate Vendor Submission">
+                <input type="hidden" id="email_subject" name="_subject" value="New Company/Subcontractor Submission - Grand Gate">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Company Name -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Company Name</label>
-                        <input type="text" name="Company Name" required 
-                            class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:outline-none transition-colors" 
-                            placeholder="e.g., Apex Heavy Civil">
+                <!-- ================= COMPANY FIELDS ================= -->
+                <div id="company-fields" class="space-y-6 block">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Company Name</label>
+                            <input type="text" name="Company Name" required class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Decision Maker Email</label>
+                            <input type="email" name="Email" required class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                        </div>
                     </div>
                     
-                    <!-- Contact Email -->
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Decision Maker Email</label>
-                        <input type="email" name="Email" required 
-                            class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:outline-none transition-colors" 
-                            placeholder="director@company.com">
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Primary Trade / Service</label>
+                        <select name="Trade Specialty" required class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                            <option value="" disabled selected>Select core capability...</option>
+                            <option value="Modular Camp Fabrication">Modular Camp Fabrication</option>
+                            <option value="Marine Logistics & Barging">Marine Logistics & Barging</option>
+                            <option value="Heavy Civil & Earthworks">Heavy Civil & Earthworks</option>
+                            <option value="Transmission & Electrical">Transmission & Electrical</option>
+                            <option value="Other">Other / Specialty Service</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Current Capacity Overview</label>
+                        <textarea name="Capacity Info" rows="3" required class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none" placeholder="Crew size, fleet assets, availability..."></textarea>
                     </div>
                 </div>
-                
-                <!-- Trade Specialty -->
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-2">Primary Trade / Service</label>
-                    <select name="Trade Specialty" required 
-                        class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:outline-none transition-colors appearance-none">
-                        <option value="" disabled selected>Select your core capability...</option>
-                        <option value="Modular Camp Fabrication">Modular Camp Fabrication & Assembly</option>
-                        <option value="Marine Logistics & Barging">Marine Logistics & Barging</option>
-                        <option value="Heavy Civil & Earthworks">Heavy Civil & Earthworks</option>
-                        <option value="Transmission & Electrical">Transmission & Electrical</option>
-                        <option value="Other">Other / Specialty Service</option>
-                    </select>
-                </div>
 
-                <!-- Capacity Info -->
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-2">Current Q4 Capacity Overview</label>
-                    <textarea name="Capacity Info" rows="4" required 
-                        class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-600 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus:outline-none transition-colors" 
-                        placeholder="Briefly describe your crew size, fleet assets, or availability for upcoming packages..."></textarea>
+                <!-- ================= WORKER FIELDS ================= -->
+                <div id="worker-fields" class="space-y-6 hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Full Name</label>
+                            <input type="text" name="Worker Name" required disabled class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Contact Email</label>
+                            <input type="email" name="Worker Email" required disabled class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Primary Skill / Ticket</label>
+                        <select name="Worker Skill" required disabled class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none">
+                            <option value="" disabled selected>Select your trade...</option>
+                            <option value="Heavy Equipment Operator">Heavy Equipment Operator</option>
+                            <option value="Camp Hospitality / Culinary">Camp Hospitality / Culinary</option>
+                            <option value="Marine / Deckhand">Marine Crew / Deckhand</option>
+                            <option value="General Labour">General Labour</option>
+                            <option value="Other">Other / Specialty Ticket</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Experience & Certifications</label>
+                        <textarea name="Worker Experience" rows="3" required disabled class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none" placeholder="List relevant tickets (e.g., H2S Alive, First Aid) and years of experience..."></textarea>
+                    </div>
                 </div>
                 
                 <!-- Submit Button -->
-                <button type="submit" 
-                    class="w-full bg-brand-accent hover:bg-yellow-300 text-zinc-950 font-black py-4 px-6 rounded-lg transition-all duration-200 uppercase tracking-widest hover:shadow-[0_0_20px_rgba(250,204,21,0.3)]">
-                    Join The Shortlist
+                <button type="submit" class="w-full bg-brand-accent hover:bg-yellow-300 text-zinc-950 font-black py-4 px-6 rounded-lg transition-all uppercase tracking-widest mt-4">
+                    Submit Profile
                 </button>
             </form>
         </div>
@@ -149,5 +227,53 @@
             <p>&copy; 2026 Grand Gate. Commercial in confidence.</p>
         </div>
     </div>
-</body>
-</html>
+
+    <!-- Toggle Logic Script -->
+    <script>
+        function switchForm(type) {
+            const companyFields = document.getElementById('company-fields');
+            const workerFields = document.getElementById('worker-fields');
+            const btnCompany = document.getElementById('btn-company');
+            const btnWorker = document.getElementById('btn-worker');
+            const emailSubject = document.getElementById('email_subject');
+            
+            const companyInputs = document.querySelectorAll('.company-input');
+            const workerInputs = document.querySelectorAll('.worker-input');
+
+            if (type === 'company') {
+                // UI Toggle
+                companyFields.classList.remove('hidden');
+                workerFields.classList.add('hidden');
+                
+                // Button Styling
+                btnCompany.classList.add('bg-brand-accent', 'text-zinc-900');
+                btnCompany.classList.remove('text-slate-400');
+                btnWorker.classList.remove('bg-brand-accent', 'text-zinc-900');
+                btnWorker.classList.add('text-slate-400');
+
+                // Subject Line
+                emailSubject.value = "New Company/Subcontractor Submission - Grand Gate";
+
+                // Enable Company, Disable Worker
+                companyInputs.forEach(input => input.disabled = false);
+                workerInputs.forEach(input => input.disabled = true);
+            } else {
+                // UI Toggle
+                workerFields.classList.remove('hidden');
+                companyFields.classList.add('hidden');
+                
+                // Button Styling
+                btnWorker.classList.add('bg-brand-accent', 'text-zinc-900');
+                btnWorker.classList.remove('text-slate-400');
+                btnCompany.classList.remove('bg-brand-accent', 'text-zinc-900');
+                btnCompany.classList.add('text-slate-400');
+
+                // Subject Line
+                emailSubject.value = "New Individual Worker Submission - Grand Gate";
+
+                // Enable Worker, Disable Company
+                workerInputs.forEach(input => input.disabled = false);
+                companyInputs.forEach(input => input.disabled = true);
+            }
+        }
+    </script>
