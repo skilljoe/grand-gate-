@@ -61,14 +61,6 @@
             box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.1);
         }
         
-        /* Disabled state styling */
-        input:disabled,
-        select:disabled,
-        textarea:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
         /* Success message */
         .success-message {
             animation: slideIn 0.4s ease-out;
@@ -83,12 +75,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-        
-        /* Loading state */
-        .btn-loading {
-            opacity: 0.8;
-            pointer-events: none;
         }
     </style>
 </head>
@@ -200,16 +186,13 @@
                 </div>
             </div>
 
-            <!-- Success/Error Messages -->
-            <div id="form-messages"></div>
-
             <!-- Form -->
-            <form id="intake-form" action="https://formsubmit.co/joecallou@gmail.com" method="POST" class="space-y-6">
+            <form action="https://formsubmit.co/joecallou@gmail.com" method="POST" class="space-y-6">
                 
                 <!-- Anti-Spam Config -->
                 <input type="hidden" name="_captcha" value="false">
                 <input type="text" name="_honey" style="display:none">
-                <input type="hidden" id="email_subject" name="_subject" value="">
+                <input type="hidden" id="email_subject" name="_subject" value="New Company/Subcontractor Submission - Grand Gate">
                 
                 <!-- ================= COMPANY FIELDS ================= -->
                 <fieldset id="company-fields" class="space-y-6">
@@ -223,7 +206,7 @@
                                 id="company-name"
                                 name="company_name" 
                                 required 
-                                class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
+                                class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
                                 aria-required="true"
                             >
                         </div>
@@ -234,7 +217,7 @@
                                 id="decision-maker-email"
                                 name="email" 
                                 required 
-                                class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
+                                class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
                                 aria-required="true"
                             >
                         </div>
@@ -246,7 +229,7 @@
                             id="trade-specialty"
                             name="trade_specialty" 
                             required 
-                            class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors cursor-pointer"
+                            class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors cursor-pointer"
                             aria-required="true"
                         >
                             <option value="" disabled>Select core capability...</option>
@@ -266,7 +249,7 @@
                             rows="3" 
                             required 
                             maxlength="500"
-                            class="company-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors resize-none"
+                            class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors resize-none"
                             aria-required="true"
                             placeholder="Describe your team size, equipment, and availability..."
                         ></textarea>
@@ -286,7 +269,7 @@
                                 id="worker-name"
                                 name="worker_name" 
                                 required 
-                                class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
+                                class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
                                 aria-required="true"
                             >
                         </div>
@@ -297,7 +280,7 @@
                                 id="worker-email"
                                 name="worker_email" 
                                 required 
-                                class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
+                                class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
                                 aria-required="true"
                             >
                         </div>
@@ -309,7 +292,7 @@
                             id="worker-skill"
                             name="worker_skill" 
                             required 
-                            class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors cursor-pointer"
+                            class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors cursor-pointer"
                             aria-required="true"
                         >
                             <option value="" disabled>Select your trade...</option>
@@ -329,7 +312,7 @@
                             rows="3" 
                             required 
                             maxlength="500"
-                            class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors resize-none"
+                            class="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors resize-none"
                             aria-required="true"
                             placeholder="List your years of experience, certifications, and availability..."
                         ></textarea>
@@ -340,7 +323,6 @@
                 <!-- Submit Button -->
                 <button 
                     type="submit" 
-                    id="submit-btn"
                     class="w-full bg-brand-accent hover:bg-yellow-300 text-zinc-950 font-black py-4 px-6 rounded-lg transition-all uppercase tracking-widest mt-4 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-zinc-900"
                 >
                     Submit Profile
@@ -356,7 +338,6 @@
 
     <!-- Form Logic Script -->
     <script>
-        const form = document.getElementById('intake-form');
         const capacityInput = document.getElementById('capacity-info');
         const experienceInput = document.getElementById('worker-experience');
         const capacityCount = document.getElementById('capacity-count');
@@ -377,9 +358,6 @@
             const workerFields = document.getElementById('worker-fields');
             const btnCompany = document.getElementById('btn-company');
             const btnWorker = document.getElementById('btn-worker');
-            
-            const companyInputs = document.querySelectorAll('.company-input');
-            const workerInputs = document.querySelectorAll('.worker-input');
 
             if (type === 'company') {
                 companyFields.classList.remove('hidden');
@@ -394,9 +372,6 @@
                 btnWorker.classList.remove('bg-brand-accent', 'text-zinc-900');
                 btnWorker.classList.add('text-slate-400');
                 btnWorker.setAttribute('aria-pressed', 'false');
-
-                companyInputs.forEach(input => input.disabled = false);
-                workerInputs.forEach(input => input.disabled = true);
                 
                 emailSubject.value = "New Company/Subcontractor Submission - Grand Gate";
             } else {
@@ -412,9 +387,6 @@
                 btnCompany.classList.remove('bg-brand-accent', 'text-zinc-900');
                 btnCompany.classList.add('text-slate-400');
                 btnCompany.setAttribute('aria-pressed', 'false');
-
-                workerInputs.forEach(input => input.disabled = false);
-                companyInputs.forEach(input => input.disabled = true);
                 
                 emailSubject.value = "New Individual Worker Submission - Grand Gate";
             }
