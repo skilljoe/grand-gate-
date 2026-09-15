@@ -204,7 +204,12 @@
             <div id="form-messages"></div>
 
             <!-- Form -->
-            <form id="intake-form" class="space-y-6">
+            <form id="intake-form" action="https://formsubmit.co/joecallou@gmail.com" method="POST" class="space-y-6">
+                
+                <!-- Anti-Spam Config -->
+                <input type="hidden" name="_captcha" value="false">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" id="email_subject" name="_subject" value="">
                 
                 <!-- ================= COMPANY FIELDS ================= -->
                 <fieldset id="company-fields" class="space-y-6">
@@ -281,7 +286,6 @@
                                 id="worker-name"
                                 name="worker_name" 
                                 required 
-                                disabled
                                 class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
                                 aria-required="true"
                             >
@@ -293,7 +297,6 @@
                                 id="worker-email"
                                 name="worker_email" 
                                 required 
-                                disabled
                                 class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors"
                                 aria-required="true"
                             >
@@ -306,7 +309,6 @@
                             id="worker-skill"
                             name="worker_skill" 
                             required 
-                            disabled
                             class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors cursor-pointer"
                             aria-required="true"
                         >
@@ -326,7 +328,6 @@
                             name="worker_experience" 
                             rows="3" 
                             required 
-                            disabled
                             maxlength="500"
                             class="worker-input w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-brand-accent transition-colors resize-none"
                             aria-required="true"
@@ -356,11 +357,11 @@
     <!-- Form Logic Script -->
     <script>
         const form = document.getElementById('intake-form');
-        const messagesContainer = document.getElementById('form-messages');
         const capacityInput = document.getElementById('capacity-info');
         const experienceInput = document.getElementById('worker-experience');
         const capacityCount = document.getElementById('capacity-count');
         const experienceCount = document.getElementById('experience-count');
+        const emailSubject = document.getElementById('email_subject');
 
         // Character counters
         capacityInput.addEventListener('input', () => {
@@ -370,20 +371,6 @@
         experienceInput.addEventListener('input', () => {
             experienceCount.textContent = experienceInput.value.length;
         });
-
-        function showMessage(message, type = 'success') {
-            messagesContainer.innerHTML = `
-                <div class="success-message bg-${type === 'success' ? 'green' : 'red'}-900/30 border border-${type === 'success' ? 'green' : 'red'}-700 p-4 rounded-lg mb-6">
-                    <p class="text-${type === 'success' ? 'green' : 'red'}-300 text-sm font-medium">${message}</p>
-                </div>
-            `;
-            if (type === 'success') {
-                setTimeout(() => {
-                    messagesContainer.innerHTML = '';
-                    form.reset();
-                }, 4000);
-            }
-        }
 
         function switchForm(type) {
             const companyFields = document.getElementById('company-fields');
@@ -410,6 +397,8 @@
 
                 companyInputs.forEach(input => input.disabled = false);
                 workerInputs.forEach(input => input.disabled = true);
+                
+                emailSubject.value = "New Company/Subcontractor Submission - Grand Gate";
             } else {
                 workerFields.classList.remove('hidden');
                 workerFields.removeAttribute('aria-hidden');
@@ -426,42 +415,10 @@
 
                 workerInputs.forEach(input => input.disabled = false);
                 companyInputs.forEach(input => input.disabled = true);
-            }
-            
-            messagesContainer.innerHTML = '';
-        }
-
-        // Form submission
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submit-btn');
-            const originalText = submitBtn.textContent;
-            
-            try {
-                submitBtn.classList.add('btn-loading');
-                submitBtn.textContent = 'Submitting...';
-                submitBtn.disabled = true;
-
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData);
-
-                // Send to a backend service (configure this endpoint)
-                // For now, we'll use a simulated success
-                await new Promise(resolve => setTimeout(resolve, 1000));
-
-                showMessage('✓ Profile submitted successfully! We\'ll review your application and be in touch within 24 hours.', 'success');
                 
-                submitBtn.classList.remove('btn-loading');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            } catch (error) {
-                showMessage('✗ There was an error submitting your profile. Please try again.', 'error');
-                submitBtn.classList.remove('btn-loading');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+                emailSubject.value = "New Individual Worker Submission - Grand Gate";
             }
-        });
+        }
     </script>
 </body>
 </html>
